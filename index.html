@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maan Jao Na ❤️</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial, sans-serif;
+    background:linear-gradient(135deg,#fff0f6,#f3edff);
+    color:#5b4052;
+    overflow-x:hidden;
+}
+
+/* Floating Hearts */
+.hearts{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    overflow:hidden;
+    z-index:0;
+}
+
+.heart{
+    position:absolute;
+    bottom:-40px;
+    font-size:20px;
+    animation:float 8s linear infinite;
+    opacity:.6;
+}
+
+@keyframes float{
+    0%{
+        transform:translateY(0) rotate(0);
+        opacity:0;
+    }
+    20%{
+        opacity:.7;
+    }
+    100%{
+        transform:translateY(-110vh) rotate(30deg);
+        opacity:0;
+    }
+}
+
+/* Main */
+.container{
+    width:90%;
+    max-width:850px;
+    margin:auto;
+    position:relative;
+    z-index:2;
+}
+
+/* Hero */
+.hero{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:30px 0;
+}
+
+.card{
+    background:rgba(255,255,255,.75);
+    backdrop-filter:blur(15px);
+    border:1px solid rgba(255,255,255,.9);
+    border-radius:30px;
+    padding:45px 25px;
+    box-shadow:0 20px 60px rgba(130,80,120,.15);
+}
+
+.emoji{
+    font-size:70px;
+    animation:bounce 2s infinite;
+}
+
+@keyframes bounce{
+    50%{
+        transform:translateY(-10px) rotate(4deg);
+    }
+}
+
+h1{
+    font-size:clamp(42px,9vw,75px);
+    margin:20px 0 15px;
+    color:#df638f;
+}
+
+.hero p{
+    font-size:19px;
+    line-height:1.7;
+    color:#795d70;
+}
+
+.name{
+    color:#d65385;
+    font-weight:bold;
+}
+
+/* Button */
+.btn{
+    display:inline-block;
+    margin-top:25px;
+    padding:15px 25px;
+    border:none;
+    border-radius:50px;
+    background:linear-gradient(135deg,#ed709e,#a68ae8);
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+    box-shadow:0 10px 25px rgba(210,100,150,.25);
+    transition:.3s;
+}
+
+.btn:hover{
+    transform:translateY(-4px) scale(1.02);
+}
+
+/* Sections */
+section{
+    padding:80px 0;
+}
+
+.title{
+    text-align:center;
+    font-size:38px;
+    margin-bottom:25px;
+    color:#694c62;
+}
+
+.message{
+    font-size:18px;
+    line-height:2;
+    text-align:center;
+}
+
+/* Reasons */
+.reasons{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+
+.reason{
+    text-align:center;
+    padding:25px 15px;
+    background:rgba(255,255,255,.7);
+    border-radius:22px;
+    box-shadow:0 10px 30px rgba(120,70,110,.08);
+    transition:.3s;
+}
+
+.reason:hover{
+    transform:translateY(-7px);
+}
+
+.reason span{
+    font-size:40px;
+}
+
+.reason h3{
+    margin:12px 0 5px;
+}
+
+.reason p{
+    color:#846f7e;
+    font-size:14px;
+}
+
+/* Question */
+.question{
+    text-align:center;
+}
+
+.question h2{
+    font-size:clamp(30px,7vw,48px);
+    color:#d75d88;
+}
+
+.buttons{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+.yes{
+    background:linear-gradient(135deg,#e85e91,#d94f70);
+}
+
+.think{
+    background:white;
+    color:#70586b;
+    border:2px solid #f0dce8;
+}
+
+.response{
+    min-height:35px;
+    margin-top:20px;
+    color:#d45484;
+    font-weight:bold;
+}
+
+/* Promise */
+.promise{
+    text-align:center;
+}
+
+.promise p{
+    font-size:18px;
+    line-height:1.8;
+}
+
+/* Footer */
+footer{
+    text-align:center;
+    padding:35px 15px;
+    color:#987f91;
+}
+
+/* Celebration */
+.pop-heart{
+    position:fixed;
+    pointer-events:none;
+    font-size:30px;
+    z-index:999;
+    animation:pop 2s ease-out forwards;
+}
+
+@keyframes pop{
+    0%{
+        transform:translate(0,0) scale(.5);
+        opacity:0;
+    }
+
+    20%{
+        opacity:1;
+    }
+
+    100%{
+        transform:translate(var(--x),var(--y)) scale(1.3);
+        opacity:0;
+    }
+}
+
+/* Mobile */
+@media(max-width:700px){
+
+    .reasons{
+        grid-template-columns:1fr;
+    }
+
+    .card{
+        padding:35px 20px;
+    }
+
+    section{
+        padding:60px 0;
+    }
+
+    .message{
+        font-size:16px;
+    }
+}
+</style>
+</head>
+
+
+<body>
+
+<!-- Floating Hearts -->
+<div class="hearts" id="hearts"></div>
+
+
+<!-- HERO -->
+<section class="hero">
+
+<div class="container">
+
+<div class="card">
+
+<div class="emoji">🥺🌸</div>
+
+<h1>Maan Jao Na ❤️</h1>
+
+<p>
+    <span class="name">[Uska Naam]</span>,
+    itni si baat par itna gussa? 🥺
+</p>
+
+<p>
+    Mujhse thodi si galti ho gayi...
+    par tumhe naraz dekhna bilkul achha nahi lag raha. ❤️
+</p>
+
+<button class="btn" onclick="scrollToSection()">
+    Meri Baat Sunogi? 💕
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- APOLOGY -->
+<section id="apology">
+
+<div class="container">
+
+<h2 class="title">
+    Achha Baba, Sorry 🥺❤️
+</h2>
+
+<div class="card">
+
+<p class="message">
+
+Mujhe pata hai baat chhoti si thi,
+lekin agar meri wajah se tumhe bura laga,
+toh I'm genuinely sorry. ❤️
+
+<br><br>
+
+Mera intention tumhe hurt karna bilkul nahi tha.
+Bas thoda sa misunderstanding ho gaya.
+
+<br><br>
+
+Gussa hona allowed hai 😤,
+lekin mujhse zyada der tak naraz rehna allowed nahi hai. 😂❤️
+
+<br><br>
+
+Chalo na...
+ab ek cute si smile de do. 🥺🌸
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- WHY SPECIAL -->
+<section>
+
+<div class="container">
+
+<h2 class="title">
+    Tum Itni Special Kyun Ho? 💕
+</h2>
+
+<div class="reasons">
+
+<div class="reason">
+<span>😊</span>
+<h3>Your Smile</h3>
+<p>Tumhari smile sabse cute hai.</p>
+</div>
+
+<div class="reason">
+<span>🥹</span>
+<h3>Your Care</h3>
+<p>Tum jis tarah care karti ho woh special hai.</p>
+</div>
+
+<div class="reason">
+<span>❤️</span>
+<h3>Your Presence</h3>
+<p>Bas tumhara saath hi kaafi hai.</p>
+</div>
+
+<div class="reason">
+<span>✨</span>
+<h3>Our Memories</h3>
+<p>Hamari chhoti chhoti memories.</p>
+</div>
+
+<div class="reason">
+<span>🌸</span>
+<h3>Your Nature</h3>
+<p>Tum jaisi ho, waise hi perfect ho.</p>
+</div>
+
+<div class="reason">
+<span>💗</span>
+<h3>Just You</h3>
+<p>Kyunki tumhari jagah koi nahi le sakta.</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- FORGIVENESS -->
+<section>
+
+<div class="container">
+
+<div class="card question">
+
+<h2>
+    Ek last baar pooch raha hoon... 🥺❤️
+</h2>
+
+<br>
+
+<h2>
+    Maaf kar dogi?
+</h2>
+
+<div class="buttons">
+
+<button class="btn yes" onclick="forgive()">
+    Haan, Maaf Kiya ❤️
+</button>
+
+<button class="btn think" id="thinkBtn" onclick="think()">
+    Abhi Sochungi 😤
+</button>
+
+</div>
+
+<div class="response" id="response"></div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- PROMISE -->
+<section>
+
+<div class="container">
+
+<div class="card promise">
+
+<h2 class="title">
+    Ek Chhoti Si Promise ❤️
+</h2>
+
+<p>
+    Main perfect nahi hoon,
+    par tumhare liye better banne ki
+    poori koshish karunga. ❤️
+</p>
+
+<p>
+    Bas ab gussa chhod do...
+    aur ek baar smile kar do. 🥺🌸
+</p>
+
+<button class="btn" onclick="forgive()">
+    Forgive Me? 🥺❤️
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<footer>
+    Made with ❤️ just to make you smile.
+</footer>
+
+
+
+<script>
+
+/* ===========================
+   FLOATING HEARTS
+=========================== */
+
+const heartContainer =
+document.getElementById("hearts");
+
+const emojis =
+["❤️","💕","💗","🌸","✨","💖","🌷"];
+
+for(let i=0;i<25;i++){
+
+    const heart =
+    document.createElement("div");
+
+    heart.className="heart";
+
+    heart.innerText =
+    emojis[Math.floor(Math.random()*emojis.length)];
+
+    heart.style.left =
+    Math.random()*100+"%";
+
+    heart.style.fontSize =
+    (15+Math.random()*20)+"px";
+
+    heart.style.animationDuration =
+    (6+Math.random()*7)+"s";
+
+    heart.style.animationDelay =
+    (-Math.random()*10)+"s";
+
+    heartContainer.appendChild(heart);
+}
+
+
+
+/* ===========================
+   SCROLL
+=========================== */
+
+function scrollToSection(){
+
+    document.getElementById("apology")
+    .scrollIntoView({
+        behavior:"smooth"
+    });
+
+}
+
+
+
+/* ===========================
+   FORGIVE BUTTON
+=========================== */
+
+function forgive(){
+
+    const response =
+    document.getElementById("response");
+
+    response.innerHTML =
+    "Yayyy! 🥺❤️ Thank You! Ab gussa thoda sa kam kar do. 🌸";
+
+    createHearts(40);
+
+}
+
+
+
+/* ===========================
+   THINK BUTTON
+=========================== */
+
+function think(){
+
+    const response =
+    document.getElementById("response");
+
+    response.innerHTML =
+    "Theek hai... main wait karunga 🥺❤️ Par jaldi maan jaana. 🌸";
+
+    const button =
+    document.getElementById("thinkBtn");
+
+    button.style.transform =
+    "translateY(-8px) rotate(-2deg)";
+
+    setTimeout(()=>{
+
+        button.style.transform="";
+
+    },700);
+
+    createHearts(10);
+
+}
+
+
+
+/* ===========================
+   HEART CELEBRATION
+=========================== */
+
+function createHearts(amount){
+
+    for(let i=0;i<amount;i++){
+
+        const heart =
+        document.createElement("div");
+
+        heart.className="pop-heart";
+
+        heart.innerText =
+        emojis[Math.floor(Math.random()*emojis.length)];
+
+        heart.style.left =
+        (45+Math.random()*10)+"vw";
+
+        heart.style.top =
+        (50+Math.random()*10)+"vh";
+
+        heart.style.setProperty(
+            "--x",
+            (Math.random()*400-200)+"px"
+        );
+
+        heart.style.setProperty(
+            "--y",
+            (-100-Math.random()*500)+"px"
+        );
+
+        document.body.appendChild(heart);
+
+        setTimeout(()=>{
+            heart.remove();
+        },2000);
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>
